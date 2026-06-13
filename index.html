@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Copilot | Neural gamified learning assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <main>
+    <!-- Main Shell -->
+    <div id="app-shell">
+        
+        <!-- Sidebar Navigation -->
+        <aside>
+            <div class="brand-section">
+                <span class="logo-glow">DSA COPILOT</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-links-list">
+                    <li>
+                        <a href="#dashboard-view" class="nav-link active" data-target="dashboard">
+                            <span>📊</span> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#mentor-view" class="nav-link" data-target="mentor">
+                            <span>🤖</span> AI Mentor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#quiz-view" class="nav-link" data-target="quiz">
+                            <span>🧠</span> Quiz Arena
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#roadmap-view" class="nav-link" data-target="roadmap">
+                            <span>🗺️</span> Roadmap
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#leaderboard-view" class="nav-link" data-target="leaderboard">
+                            <span>🏆</span> Leaderboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#analytics-view" class="nav-link" data-target="analytics">
+                            <span>📈</span> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Panel -->
+      
+            
+            <!-- Global Header -->
+            <header>
+                <div>
+                    <h2 style="font-size: 18px; font-weight: 700; color: #fff;">System Overview</h2>
+                </div>
+                
+                <div class="user-status-widget">
+                    <!-- XP progress -->
+                    <div class="xp-progress-container">
+                        <div class="xp-label-row">
+                            <span id="user-level">LVL 1</span>
+                            <span id="xp-progress-text">0 / 100 XP</span>
+                        </div>
+                        <div class="xp-bar-track">
+                            <div id="xp-bar-fill" class="xp-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Streak Fire -->
+                    <div class="streak-indicator">
+                        <span>🔥</span> <span id="streak-count">1</span>
+                    </div>
+                    <!-- User Profile avatar -->
+                    <div class="profile-card">
+                        <div class="profile-avatar">👤</div>
+                        <div>
+                            <div id="user-name">Neo Coder</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Active View Container -->
+             <main>
+            <section id="dashboard-view">
+            <!-- 1. DASHBOARD VIEW -->
+            <div id="dashboard-view" class="view-container active">
+                <div class="dash-grid">
+                    
+                    <!-- Main column -->
+                    <div class="dash-main-pane">
+                        
+                        <!-- Stats Summary -->
+                        <div class="stats-summary-row">
+                            <div class="glass-card stat-widget glow-cyan">
+                                <span class="stat-label">System Level</span>
+                                <span id="dash-level" class="stat-val">1</span>
+                            </div>
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Total XP</span>
+                                <span id="dash-xp" class="stat-val">0</span>
+                            </div>
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Active Streak</span>
+                                <span id="dash-streak" class="stat-val">1 Day</span>
+                            </div>
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Quizzes Completed</span>
+                                <span id="dash-quizzes" class="stat-val">0</span>
+                            </div>
+                        </div>
+                        <!-- Badges Grid -->
+                        <div class="glass-card badge-grid-container">
+                            <h3>Achieved System Badges</h3>
+                            <div id="dash-badge-grid" class="badge-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar column -->
+                    <div class="dash-sidebar-pane">
+                        
+                        <!-- Streak tracker -->
+                        <div class="glass-card streak-card">
+                            <h3 style="font-size:14px; font-weight:700;">Cognitive Connection Grid</h3>
+                            <div id="streak-dots" class="streak-dots-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                            <p style="font-size:11px; color:var(--text-muted); text-align:center;">Interact with the Copilot daily to keep your streaks hot.</p>
+                        </div>
+                        <!-- Roadmap Goals selection -->
+                        <div class="glass-card goal-selector-widget">
+                            <h3 style="font-size:14px; font-weight:700;">Select Learning Path</h3>
+                            <select id="dash-goal-selector" class="cyber-select">
+                                <option value="dsa_fundamentals">DSA Foundations (Arrays to DP)</option>
+                                <option value="faang_prep">FAANG Accelerator Program</option>
+                                <option value="cp_master">Competitive Coding Expert</option>
+                            </select>
+                        </div>
+                        <!-- Action shortcuts -->
+                        <div class="glass-card quick-action-widget">
+                            <h3 style="font-size:14px; font-weight:700;">Operational Shortcuts</h3>
+                            <button id="dash-btn-roadmap" class="cyber-btn">Resume learning timeline</button>
+                            <button id="dash-btn-mentor" class="cyber-btn outline">Initiate AI consultation</button>
+                            <button id="dash-btn-quiz" class="cyber-btn outline">Generate diagnostic quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <!-- 2. AI MENTOR VIEW -->
+             <section id="mentor-view">
+            <div id="mentor-view" class="view-container">
+                <div class="mentor-chat-layout">
+                    <!-- Chat box -->
+                    <div class="chat-pane">
+                        <div class="chat-header">
+                            <h3 style="font-size:14px; font-weight:700; color:#fff;">AI DSA Mentor Terminal</h3>
+                            <div class="ping-status">
+                                <div class="ping-dot"></div> ONLINE
+                            </div>
+                        </div>
+                        
+                        <div id="chat-messages-container" class="chat-messages">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        
+                        <div class="chat-input-bar">
+                            <form id="chat-input-form">
+                                <input type="text" id="chat-input" class="cyber-input" placeholder="Type a DSA concept, e.g., 'Explain Dijkstra'..." autocomplete="off">
+                                <button type="submit" class="cyber-btn" style="width: 100px;">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Sidebar quick prompts helper -->
+                    <div class="prompt-helper-pane">
+                        <div class="glass-card prompt-helper-card">
+                            <h4 style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Quick Directives</h4>
+                            <div class="quick-prompts-list">
+                                <button class="quick-prompt-btn" data-prompt="Explain Recursion">Explain Recursion</button>
+                                <button class="quick-prompt-btn" data-prompt="How does Dijkstra work?">How does Dijkstra work?</button>
+                                <button class="quick-prompt-btn" data-prompt="DP vs Memoization">DP vs Memoization</button>
+                                <button class="quick-prompt-btn" data-prompt="Reverse a Linked List">Reverse a Linked List</button>
+                                <button class="quick-prompt-btn" data-prompt="FAANG Interview Tips">FAANG Interview Tips</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <!-- 3. QUIZ ARENA VIEW -->
+             <section id="quiz-view">
+            <div id="quiz-view" class="view-container">
+                
+                <!-- Screen A: Configuration -->
+                <div id="quiz-config-screen" class="quiz-screen active">
+                    <div class="glass-card quiz-config-card">
+                        <h3 class="quiz-config-title">QUIZ ARENA CONFIGURATOR</h3>
+                        
+                        <div class="input-group">
+                            <label for="quiz-topic-select">Subject Category</label>
+                            <select id="quiz-topic-select" class="cyber-select">
+                                <option value="Arrays">Arrays & Sorting</option>
+                                <option value="Linked Lists">Linked Lists</option>
+                                <option value="Trees">Trees & Hierarchies</option>
+                                <option value="Graphs">Graphs & Networks</option>
+                                <option value="Dynamic Programming">Dynamic Programming (DP)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="quiz-diff-select">Difficulty Tier</label>
+                            <select id="quiz-diff-select" class="cyber-select">
+                                <option value="easy">Easy (Foundations)</option>
+                                <option value="medium">Medium (Intermediate Algorithms)</option>
+                                <option value="hard">Hard (Core FAANG Patterns)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="quiz-count-select">Telemetry Length</label>
+                            <select id="quiz-count-select" class="cyber-select">
+                                <option value="5">5 Questions (Standard)</option>
+                                <option value="10">10 Questions (Advanced)</option>
+                            </select>
+                        </div>
+                        <button id="quiz-start-btn" class="cyber-btn" style="margin-top: 10px;">LAUNCH RUNTIME DIAGNOSTICS</button>
+                    </div>
+                </div>
+                </section>
+                <!-- Screen B: Active Quiz Runner -->
+                 <section id="quiz-active-screen">
+                <div id="quiz-active-screen" class="quiz-screen">
+                    <div class="glass-card quiz-runner-container">
+                        <div class="quiz-runner-header">
+                            <div>
+                                <span id="active-quiz-topic" class="badge-tag" style="border-color:var(--cyan); color:var(--cyan);">Topic</span>
+                                <span id="active-quiz-difficulty" class="badge-tag" style="border-color:var(--pink); color:var(--pink);">DIFFICULTY</span>
+                            </div>
+                            <div id="active-quiz-timer">05:00</div>
+                        </div>
+                        <!-- Progress indicator -->
+                        <div class="quiz-progress-bar-track">
+                            <div id="quiz-progress-filled" class="quiz-progress-bar-fill"></div>
+                        </div>
+                        <div id="active-quiz-num" style="font-size: 12px; font-weight: 700; color:var(--text-muted);">Question 1 of 5</div>
+                        <!-- Card displaying question content -->
+                        <div class="quiz-question-card">
+                            <h3 id="active-quiz-question-text">Question Loading...</h3>
+                            <div id="active-quiz-options" class="quiz-options-list">
+                                <!-- Option buttons loaded by JS -->
+                            </div>
+                        </div>
+                        <!-- Navigation Footer -->
+                        <div class="quiz-runner-footer">
+                            <button id="quiz-prev-btn" class="cyber-btn outline" style="width: 120px;">Previous</button>
+                            <div style="flex-grow: 1;"></div>
+                            <button id="quiz-next-btn" class="cyber-btn" style="width: 120px;">Next</button>
+                            <button id="quiz-submit-btn" class="cyber-btn" style="width: 150px; display: none; background: linear-gradient(135deg, var(--cyan), var(--green));">SUBMIT Telemetry</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Screen C: Quiz Results summary details -->
+                <div id="quiz-results-screen" class="quiz-screen">
+                    <div class="glass-card quiz-runner-container">
+                        <h3 style="font-size:20px; font-weight:800; text-align:center; color:var(--cyan); margin-bottom:10px;">DIAGNOSTICS REPORT</h3>
+                        
+                        <!-- Score card metrics -->
+                        <div class="results-header-summary">
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Final Score</span>
+                                <span id="results-score" class="stat-val" style="color: #fff;">0 / 5</span>
+                            </div>
+                            <span class="glass-card stat-widget glow-cyan">
+                                <span class="stat-label">XP Acquired</span>
+                                <span id="results-xp" class="stat-val">+0 XP</span>
+                            </span>
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Accuracy Ratio</span>
+                                <span id="results-accuracy" class="stat-val">0%</span>
+                            </div>
+                            <div class="glass-card stat-widget">
+                                <span class="stat-label">Time Elapsed</span>
+                                <span id="results-time" class="stat-val">0s</span>
+                            </div>
+                        </div>
+                        <!-- List of Question corrections details -->
+                        <div id="results-correction-list" class="corrections-container">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        <button id="quiz-results-exit" class="cyber-btn" style="width: 200px; margin: 0 auto;">EXIT MODULE</button>
+                    </div>
+                </div>
+            </div>
+            </section>
+
+            <!-- 4. ROADMAP VIEW -->
+             <section id="roadmap-view">
+            <div id="roadmap-view" class="view-container">
+                <div class="glass-card" style="margin-bottom: 24px;">
+                    <h3 style="font-weight:800; font-size: 16px; margin-bottom: 8px;">Personalized AI Learning Timeline</h3>
+                    <p style="font-size: 12px; color: var(--text-muted);">Follow the nodes sequentially to master core patterns. Earn large XP bonuses (+50 XP) upon node completion.</p>
+                </div>
+                
+                <!-- Roadmap NodesTimeline container -->
+                <div id="roadmap-nodes-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <!-- 5. LEADERBOARD VIEW -->
+            <div id="leaderboard-view" class="view-container">
+                <div class="glass-card" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-weight:800; font-size: 16px; margin-bottom: 4px;">Global Net Rankings</h3>
+                        <p style="font-size: 12px; color: var(--text-muted);">Compare scores, active streaks, and completed levels with other students on the grid.</p>
+                    </div>
+                    <button id="settings-reset-btn" class="cyber-btn outline" style="width:140px; font-size: 11px; padding:8px;">Reset Local Database</button>
+                </div>
+                <div class="glass-card leaderboard-table-container">
+                    <table class="cyber-table" id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">Rank</th>
+                                <th style="width: 80px;">Grid Node</th>
+                                <th>Handle</th>
+                                <th>Unlocked Badges</th>
+                                <th>System Lvl</th>
+                                <th>Active Streak</th>
+                                <th style="text-align: right;">Total Telemetry XP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated dynamically by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </section>
+            <!-- 6. ANALYTICS VIEW -->
+             <section id="analytics-view">
+            <div id="analytics-view" class="view-container">
+                <div class="analytics-grid">
+                    
+                    <!-- Chart panels -->
+                    <div class="analytics-left-pane">
+                        <div class="glass-card chart-panel">
+                            <h3>Performance Mastery Grid</h3>
+                            <div id="chart-mastery-subject" class="chart-container">
+                                <!-- Custom SVG Mastery Chart rendered here -->
+                            </div>
+                        </div>
+                        <div class="glass-card chart-panel">
+                            <h3>Cumulative Learning Curve</h3>
+                            <div id="chart-xp-timeline" class="chart-container">
+                                <!-- Custom SVG XP Timeline rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Diagnostic reports and weaknesses -->
+                    <div class="analytics-right-pane">
+                        <!-- Score aggregates widget card -->
+                        <div class="glass-card">
+                            <h3 style="font-size: 15px; font-weight: 700; margin-bottom:16px;">Core Diagnostics Summary</h3>
+                            <div class="stats-summary-row" style="grid-template-columns: repeat(3, 1fr);">
+                                <div class="stat-widget">
+                                    <span class="stat-label">Total Quizzes</span>
+                                    <span id="analytics-total-quizzes" class="stat-val" style="font-size:20px;">0</span>
+                                </div>
+                                <div class="stat-widget glow-cyan">
+                                    <span class="stat-label">Overall Acc</span>
+                                    <span id="analytics-accuracy" class="stat-val" style="font-size:20px;">0%</span>
+                                </div>
+                                <div class="stat-widget">
+                                    <span class="stat-label">Quiz XP</span>
+                                    <span id="analytics-xp-gained" class="stat-val" style="font-size:20px;">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Isolated Weak Areas list -->
+                        <div class="glass-card">
+                            <h3 style="font-size: 15px; font-weight: 700; margin-bottom:12px;">Identified System Vulnerabilities</h3>
+                            <div id="analytics-weak-list" class="weak-topics-list">
+                                <!-- Loaded dynamically by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+    </div>
+    </section>
+    <!-- ==========================================================================
+       Modals, Drawers & System Toasts
+       ========================================================================== -->
+       
+    <!-- 1. Level-Up Modal -->
+    <div id="level-up-modal" class="modal-overlay">
+        <canvas id="level-up-confetti"></canvas>
+        <div class="modal-content-card">
+            <div class="level-badge-glow">
+                <span id="modal-new-level">2</span>
+            </div>
+            <h2 class="level-up-title">NEURAL COGNITIVE LEVEL UP</h2>
+            <p class="level-up-desc">Your logical computing nodes have reached a higher tier. System level increased. Keep debugging the matrix!</p>
+            <button id="level-up-modal-close" class="cyber-btn" style="width: 150px; margin: 0 auto;">Acknowledge</button>
+        </div>
+    </div>
+    <!-- 2. System Toast Banner notifications -->
+    <div id="system-toast" class="system-toast-banner">
+        Operation executed.
+    </div>
+    <!-- 3. Learning Node expansion modal drawer -->
+    <div id="node-details-drawer" class="drawer-modal">
+        <div class="drawer-header">
+            <span id="drawer-node-status" class="status-indicator unlocked">UNLOCKED</span>
+            <button id="node-drawer-close" class="close-btn">×</button>
+        </div>
+        
+        <h2 id="drawer-node-title" style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 8px;">Node Title</h2>
+        <p id="drawer-node-desc" style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">Node Description</p>
+        
+        <div class="drawer-section">
+            <h4>Target Concepts</h4>
+            <ul id="drawer-concepts-list">
+                <!-- Loaded by JS -->
+            </ul>
+        </div>
+        <div class="drawer-section">
+            <h4>Recommended Cyber Archives</h4>
+            <ul id="drawer-resources-list">
+                <!-- Loaded by JS -->
+            </ul>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button id="drawer-btn-complete" class="cyber-btn">Mark as Completed (+50 XP)</button>
+            <button id="drawer-btn-mentor" class="cyber-btn outline">Consult AI Mentor on Node</button>
+            <button id="drawer-btn-quiz" class="cyber-btn outline">Initiate Node Practice Quiz</button>
+        </div>
+    </div>
+    </main>
+    <!-- Script imports -->
+    <script src="js/state.js"></script>
+    <script src="js/mentor.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/roadmap.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
